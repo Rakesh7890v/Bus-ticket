@@ -66,13 +66,14 @@ const SeatsMenu = () => {
       },2000);
 
       const input = document.getElementById('ticket');
-      html2canvas(input, { scale: 4 }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0, '', 'FAST');
-        pdf.save('Data.pdf');
+      html2canvas(input, {
+          scale: window.devicePixelRatio || 1, 
+      }).then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF();
+          pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
+          pdf.save('Data.pdf');
       });
-
     }
   }
 
